@@ -1,5 +1,5 @@
 ---
-name: Trivy DB
+name: Trivy DB Trixie
 on:
   schedule:
     - cron: "0 */1 * * *"
