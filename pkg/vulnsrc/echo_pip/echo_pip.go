@@ -27,7 +27,7 @@ type Advisories map[string]VulnInfo
 
 const (
 	distroName    = "echo-pip"
-	pipBucketName = "pip::Echo Vulnerability Database"
+	pipBucketName = "pip::ZZZEcho Vulnerability Database"
 )
 
 // FixedVersions represents the structure of fixed_versions.json
