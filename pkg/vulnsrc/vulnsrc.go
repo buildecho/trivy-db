@@ -13,6 +13,7 @@ import (
 	"github.com/aquasecurity/trivy-db/pkg/vulnsrc/composer"
 	"github.com/aquasecurity/trivy-db/pkg/vulnsrc/debian"
 	"github.com/aquasecurity/trivy-db/pkg/vulnsrc/echo"
+	echoPip "github.com/aquasecurity/trivy-db/pkg/vulnsrc/echo_pip"
 	"github.com/aquasecurity/trivy-db/pkg/vulnsrc/ghsa"
 	"github.com/aquasecurity/trivy-db/pkg/vulnsrc/glad"
 	"github.com/aquasecurity/trivy-db/pkg/vulnsrc/govulndb"
@@ -60,6 +61,7 @@ var (
 		chainguard.NewVulnSrc(),
 		bitnami.NewVulnSrc(),
 		echo.NewVulnSrc(),
+		echoPip.NewVulnSrc(),
 		minimos.NewVulnSrc(),
 
 		k8svulndb.NewVulnSrc(),
