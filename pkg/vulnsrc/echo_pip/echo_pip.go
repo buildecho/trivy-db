@@ -155,20 +155,19 @@ func (vs VulnSrc) saveFixedVersions(tx *bolt.Tx) error {
 	// For each package, create advisory with VulnerableVersions
 	for pkgName, cveMap := range fixedVersions {
 		for cveID, versions := range cveMap {
-			patchedVersions := []string{}
 			for _, version := range versions {
-				patchedVersions = append(patchedVersions, version)
-			}
-			adv := types.Advisory{
-				PatchedVersions: patchedVersions,
-			}
+				vulnerableVersions := "<" + version
+				adv := types.Advisory{
+					VulnerableVersions: []string{vulnerableVersions},
+				}
 
-			if err := vs.dbc.PutAdvisoryDetail(tx, cveID, pkgName, []string{pipBucketName}, adv); err != nil {
-				return oops.Wrapf(err, "failed to save pip advisory detail")
-			}
+				if err := vs.dbc.PutAdvisoryDetail(tx, cveID, pkgName, []string{pipBucketName}, adv); err != nil {
+					return oops.Wrapf(err, "failed to save pip advisory detail")
+				}
 
-			if err := vs.dbc.PutVulnerabilityID(tx, cveID); err != nil {
-				return oops.Wrapf(err, "failed to save the vulnerability ID")
+				if err := vs.dbc.PutVulnerabilityID(tx, cveID); err != nil {
+					return oops.Wrapf(err, "failed to save the vulnerability ID")
+				}
 			}
 		}
 	}
